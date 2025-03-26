@@ -107,3 +107,20 @@ If we make the models do all the work—data, logic, and database stuff—it get
 Yeah, I’ve used Postman to try out my API endpoints. It makes it easy to see if everything’s working right. It’s helpful for when I’m working on my own or for a group project, especially when working with APIs.
 
 #### Reflection Publisher-3
+
+1. Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+
+In this case, the system uses the Push method. The publisher sends all the update info straight to the subscribers without waiting for them to ask. The data is created by the publisher and passed into the subscriber’s update function right away.
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+
+- Pros:
+With the Pull approach, subscribers can choose when to check for new info. This is helpful when some parts of the app aren’t always active. They can wait until they’re running again before checking for updates. It also means not everything is updated all at once, which can make the system more efficient and avoid overloading the server.
+
+- Cons:
+We’d need a good way to decide when the subscriber checks for updates. If they check too often, it could waste resources and slow things down. But if they check too rarely, they might miss important changes or be out of date for a while. So timing becomes tricky.
+
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+
+Without multi-threading, each subscriber would be updated one after another. If one takes too long, it would hold up the rest. That could make the whole process slow, especially with lots of subscribers. Multi-threading lets the app notify everyone at the same time, so things run faster and more smoothly as the system grows.
