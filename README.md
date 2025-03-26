@@ -78,6 +78,20 @@ This is the place for you to write reflections:
 
 #### Reflection Publisher-1
 
+1. In the Observer pattern diagram explained by the Head First Design Pattern book, Subscriber is defined as an interface. Explain based on your understanding of Observer design patterns, do we still need an interface (or trait in Rust) in this BambangShop case, or a single Model struct is enough?
+
+In Head First Design Patterns, the Observer pattern represents subscribers through an interface. If every subscriber in the system behaves identically, a trait isn't essential. Defining a dedicated interface only makes sense when you have multiple kinds of observers reacting differently. Since BambangShop's subscribers currently share the same structure and logic, using just a plain struct quite satisfies for now.
+
+
+2. id in Program and url in Subscriber is intended to be unique. Explain based on your understanding, is using Vec (list) sufficient or using DashMap (map/dictionary) like we currently use is necessary for this case?
+
+While it’s technically possible to track unique entries like id or url using a Vec, it’s not the most effective approach. Every time you want to check for existence or remove an element, you'd need to loop through the entire list. On the other hand, DashMap is built for this — it ensures uniqueness through keys, offers faster lookups, and simplifies data handling overall. Given these advantages, keeping DashMap is the smarter, more efficient option here.
+
+
+3. When programming using Rust, we are enforced by rigorous compiler constraints to make a thread-safe program. In the case of the List of Subscribers (SUBSCRIBERS) static variable, we used the DashMap external library for thread safe HashMap. Explain based on your understanding of design patterns, do we still need DashMap or we can implement Singleton pattern instead?
+
+Rust’s strict type system enforces safe concurrency, which is crucial when working with shared mutable data like the global SUBSCRIBERS list. A Singleton can give you a shared access point, but it doesn't automatically guard against race conditions. Since multiple threads might access or modify subscriber data, using a thread-safe collection like DashMap remains essential. Even with a Singleton, you’d still need a concurrency-safe mechanism under the hood — so DashMap stays relevant.
+
 #### Reflection Publisher-2
 
 #### Reflection Publisher-3
