@@ -94,4 +94,16 @@ Rust’s strict type system enforces safe concurrency, which is crucial when wor
 
 #### Reflection Publisher-2
 
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
+In MVC, the Model usually handles both saving data and running logic. But if we split it into smaller parts like Service and Repository, our code gets way easier to manage. The Model just keeps the data, the Service handles how things work, and the Repository talks to the database. This way, everything has its own job, which makes our code cleaner, simpler to test, and easier to improve as the app gets bigger.
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+
+If we make the models do all the work—data, logic, and database stuff—it gets messy real fast. Each model would have too many responsibilities, and they’d rely too much on each other. That means if we change one thing, we might accidentally break something else. It would be hard to keep track of how everything connects. Splitting things into services and repositories makes the structure easier to follow and fix.
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+
+Yeah, I’ve used Postman to try out my API endpoints. It makes it easy to see if everything’s working right. It’s helpful for when I’m working on my own or for a group project, especially when working with APIs.
+
 #### Reflection Publisher-3
